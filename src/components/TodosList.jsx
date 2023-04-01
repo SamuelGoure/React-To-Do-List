@@ -1,16 +1,9 @@
 import React from 'react';
 
-const TodosList = ({todos, setTodos}) => {
+const TodosList = (props) => {
     return (
-        <div>
-           {todos.map((todo) =>{
-
-           <li className='todo-List' key={todo.id}>
-            <input type="text" value={todo.title} className="list" onChange={(event) =>event.preventDefault()}
-             />
-
-           </li> 
-           })}
+        <div className='todoList'>
+          {props.todo.text}  
         </div>
     );
 };

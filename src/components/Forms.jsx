@@ -1,21 +1,19 @@
-import React from 'react';
-import {v4 as uuidv4} from "uuid"
+import React, { useState } from 'react';
 
-const Forms = ( {input, setInput, todos, setTodos} ) => {
-const onInputChange = (event) => {
-    setInput(event.target.value)
-};
 
-const onFormSubmit = (event) =>{
-    event.preventDefault();
-    setTodos([...todos, {id:uuidv4(), title:input, completed:false} ]);
-    setInput("")
-}
+const Forms = ( props) => {
+
+  const [input, setInput] = useState('');
+ const handleOnSubmit = (e)=> {
+     e.preventDefault();
+      props.addTodo(input)
+     setInput('')
+ }
 
     return (
-       <form onSubmit = {onFormSubmit}>
-        <input type="text" placeholder='Enter a Todo...' className='task-input' value={input} onChange={onInputChange} />
-        <button className='button-add' type='submit'>
+       <form onSubmit={handleOnSubmit}>
+        <input onChange={(e)=> setInput(e.target.value)} type="text" placeholder='Enter a Todo...' className='task-input' value={input} />
+        <button className='button-add' type='submit'   >
              Add
         </button>
        </form>

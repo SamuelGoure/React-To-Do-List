@@ -38,6 +38,7 @@ body{
   background-color: #0000;
   border: 1px solid #c89666;
   border-radius: 10px;
+  margin-bottom: 5px;
 }
 .button-add{
   width: 70px;
@@ -95,4 +96,17 @@ border-radius: 50%;
 input:focus,
 button:focus{
   outline: none;
+}
+
+.todoList{
+  outline: none;
+  width: 260px;
+  padding: 15px;
+  margin-right: 25px;
+  font-size: 20px;
+  color: #ccc;
+  background-color: #0000;
+  border: 1px solid #c89666;
+  border-radius: 10px;
+  margin-bottom: 5px;
 }

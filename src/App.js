@@ -5,8 +5,18 @@ import Forms from "./components/Forms";
 import TodosList from "./components/TodosList";
 
 function App() {
-  const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
+
+  const addTodo = (text) => {
+    let id = 1;
+    if (todos.length > 0) {
+      id = todos[0].id + 1;
+    }
+    let todo = { id: id, text: text, completed: false };
+    let newTodos = [todo, ...todos];
+    console.log(newTodos);
+    setTodos(newTodos);
+  };
   return (
     <div className="container">
       <div className="app-wrapper">
@@ -14,15 +24,10 @@ function App() {
           <Header />
         </div>
         <div>
-          <Forms
-            input={input}
-            setInput={setInput}
-            todos={todos}
-            setTodos={setTodos}
-          />
-        </div>
-        <div>
-          <TodosList todos={todos} setTodos={setTodos} />
+          <Forms addTodo={addTodo} />
+          {todos.map((todo) => {
+            return <TodosList todo={todo} key={todo.id} />;
+          })}
         </div>
       </div>
     </div>
