@@ -14,9 +14,34 @@ function App() {
     }
     let todo = { id: id, text: text, completed: false };
     let newTodos = [todo, ...todos];
-    console.log(newTodos);
+
     setTodos(newTodos);
   };
+  const removeTodo = (id) => {
+    let updatedTodos = [...todos].filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+  };
+
+  // const completedTodo = (id) => {
+  // let updatedTodos = todos.map((todos))
+  //    if(todos.id === id){
+  //       todos.completed= !todos.completed
+  //     }
+  //   return todos
+  //  }
+  //  setTodos(updatedTodos)
+  // };
+
+  const completedTodo = (id) => {
+    let updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+  };
+
   return (
     <div className="container">
       <div className="app-wrapper">
@@ -26,7 +51,14 @@ function App() {
         <div>
           <Forms addTodo={addTodo} />
           {todos.map((todo) => {
-            return <TodosList todo={todo} key={todo.id} />;
+            return (
+              <TodosList
+                todo={todo}
+                key={todo.id}
+                removeTodo={removeTodo}
+                completedTodo={completedTodo}
+              />
+            );
           })}
         </div>
       </div>
